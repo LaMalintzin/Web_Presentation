@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+section{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    scroll-snap-align: start;
+}
+.header{
+    background-image: url('fantasy-city.jpg');
+    background-size: cover; height: 1000px;
+    text-align: center;
+    padding: 20px 0;
+    background-attachment: fixed;
+    color: rgb(102, 172, 233);
+
+}      
+
+.profile-image {
+display: block;
+margin: 0 auto;
+}  
