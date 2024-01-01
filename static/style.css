@@ -24,4 +24,41 @@ section{
 .profile-image {
 display: block;
 margin: 0 auto;
-}  
+} 
+
+.content-section {
+    position: relative;
+    color: rgb(164, 252, 0);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.content-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('earth.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 1;
+}
+
+.content-block {
+    flex-basis: 40%;
+    padding: 20px;
+    opacity: 0.9;
+}
+
+.contact {
+    background-image: url(old_phone.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: brown;
+    text-align: center;
+}
