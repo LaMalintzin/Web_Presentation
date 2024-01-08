@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Configuration to Set up a database with MariaDB in Linux. Works different on windows and apple. 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:your_password@localhost/mydb'
+# Where it says "Here_you_write_your_password", you need to write your password. 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Here_you_write_your_password@localhost/mydb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
