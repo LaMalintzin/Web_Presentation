@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Status</title>
+</head>
+<body>
+    <h1>My Status for the hour</h1>
+    <p>For the moment working on different projects.</p>
+    <form method="post" action="/my_status">
+        <input type="text" name="xss_input">
+        <input type="submit" value="submit">
+    </form>
+    <div>
+        {{ user_input | safe }}</div>
+
+</body>
+</html>
