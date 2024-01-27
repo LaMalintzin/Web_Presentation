@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+</head>
+<body>
+    <h1>Open redirect</h1>
+    <a href="/open?url=http://127.0.0.01:5000">
+        <img src="/static/capGirl.jpg" style="height: 500px; width: 300px;" alt="Logo">
+    </a>
+    <form action="/open">
+        <label for="url">Redirect to:</label>
+        <input type="text" name="url" placeholder="Your URL">
+        <button type="submit">GO</button>
+
+    </form>
+</body>
+</html>

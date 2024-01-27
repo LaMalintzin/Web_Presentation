@@ -43,5 +43,44 @@ def log_in_page():
     
     return render_template('log_in_page.html', message=message)
 
+# Make a blacklist for some characters that may be harmful for the security of your database.
+bad_chars = ["'", ",", ";", "-", "_"]
+
+def black_list(uname):
+    for char in bad_chars:
+        if char in uname.lower():
+            return True
+    return False
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    message = ''
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        if black_list(username):
+            message = "No Hacking please"
+            return render_template('register.html', message=message)
+
+        check_query = "SELECT username FROM users WHERE username=%s"
+        user_exists = db.engine.execute(check_query, (username,)).fetchone()
+
+        if user_exists:
+            message = "Username already exists!"
+        else:
+            insert_query = "INSERT INTO users (username, password) VALUES (%s, %s)"
+            db.engine.execute(insert_query, (username, password))
+
+            message = "Registration successful!"
+
+    return render_template('register.html', message=message)
+
+@app.route('/redirect', methods=['GET'])
+def redirect_page():
+    return render_template('redirect.html')
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
