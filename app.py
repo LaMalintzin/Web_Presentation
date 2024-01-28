@@ -1,5 +1,6 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, session, url_for
 from flask_sqlalchemy import SQLAlchemy
+import requests
 
 app = Flask(__name__)
 
@@ -80,7 +81,37 @@ def register():
 def redirect_page():
     return render_template('redirect.html')
 
+# Starting coding on an exploit 
+@app.route('/open', methods=['GET'])
+def open():
+    target_url = request.args.get('url')
+    # action=fetch 
+    action = request.args.get('action', 'redirect')
 
+    # open redirect
+    if action == 'redirect':
+        return redirect(target_url)
+    
+    # SSRF Server-side request forgery is a web security vulnerability 
+    # that allows an attacker to cause the server-side application to make requests to an unintended location.
+    # It can be chained with other vulnerabilities.
+    
+    elif action == 'fetch':
+        try:
+            response = requests.get(target_url, timeout=5)
+            if response.status_code == 200:
+                return f"Recieved 200 ok {target_url}"
+            else:
+                return f"Recieved {response.status_code} from {target_url}"
+        
+        except requests.ConnectionError:
+            return f"Connection Refused by {target_url}"
+        except requests.Timeout:
+            return f"Connection timed out for {target_url}"
+        except Exception as e:
+            return str(e)
+        
+    return "Specify action and URL parameters"
 
 if __name__ == '__main__':
     app.run(debug=True)
